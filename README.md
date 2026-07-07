@@ -13,17 +13,19 @@ This is a Python-based solution for the Acme Secret Santa Coding Challenge. It a
 - No external dependencies required to run the core application (uses Python standard library).
 
 ## How to Run
-The program is invoked via the command line and expects CSV files for input and output.
+The program is invoked via the command line and expects CSV files for input and output. Since the raw data is provided in `.xlsx` format, first run the conversion script to generate the necessary CSV files:
 
-### Basic Usage (No previous year data)
 ```bash
-python main.py employees.csv assignments.csv
+python convert.py
 ```
 
-### Advanced Usage (With previous year data)
-If you have a CSV file containing last year's assignments (e.g., `previous.csv`), you can supply it to ensure no one receives the same secret child as last year:
+This will automatically create `employees_list.csv` and `secret_santa_game_result_2023.csv` from the Excel files.
+
+### Generating Assignments
+To generate the new Secret Santa assignments while strictly avoiding last year's pairings, run the following exact command using the generated CSVs:
+
 ```bash
-python main.py employees.csv assignments.csv --previous previous.csv
+python main.py employees_list.csv new_assignments.csv --previous secret_santa_game_result_2023.csv
 ```
 
 ## Running the Tests
